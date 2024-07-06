@@ -11,23 +11,28 @@ export default function Introduction({
   onClickStart,
 }: IntroductionProps) {
   return (
-    <div className="flex flex-col">
-      <div>General English Test</div>
-      <div className="general-info">
-        <div className="general-info-box">
-          <div>Total questions</div>
-          <div>{questions.length} questions</div>
+    <div className="flex flex-col items-center">
+      <div className="text-3xl font-semibold mb-14">General English Test</div>
+      <div className="general-info flex justify-center mb-14">
+        <div className="rounded-lg bg-[#E9EEFB] px-8 py-3 text-left mr-5">
+          <div className="text-xs font-normal">Total questions</div>
+          <div className="text-base font-bold">
+            {questions.length} questions
+          </div>
         </div>
-        <div className="general-info-box">
-          <div>Test duration</div>
-          <div>5:00 mins</div>
+        <div className="rounded-lg bg-[#E9EEFB] px-8 py-3 text-left">
+          <div className="text-xs font-normal">Test duration</div>
+          <div className="text-base font-bold">5:00 mins</div>
         </div>
       </div>
+      <Logo className="mb-14" />
       <div>
-        <Logo />
-      </div>
-      <div>
-        <button onClick={onClickStart}>Start the test</button>
+        <button
+          className="bg-[#1F46B1] text-white rounded-2xl px-8 py-2"
+          onClick={onClickStart}
+        >
+          Start the test
+        </button>
       </div>
     </div>
   );

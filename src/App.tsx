@@ -92,7 +92,7 @@ export default function App() {
           EDSY.
         </span>
       </div>
-      <div className="content bg-white mx-52 my-36 rounded-3xl">
+      <div className="content bg-white mx-52 my-36 p-12 rounded-3xl">
         {renderStateComponent(currentState)}
       </div>
     </div>

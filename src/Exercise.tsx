@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Question } from "./App";
+import { ReactComponent as AlarmLogo } from "./alarm.svg";
 
 interface ExerciseProps {
   questions: Question[];
@@ -32,6 +33,9 @@ export default function Exercise({ questions, onClickSubmit }: ExerciseProps) {
   const [committedAnswers, setCommittedAnswers] = useState<CommittedAnswer[]>(
     initCommittedAnswers(questions),
   );
+  const currentProgressPercentage: number =
+    (currentQuestion / totalQuestions) * 100;
+
   const saveCommittedAnswer = (
     choiceId: number | undefined,
   ): CommittedAnswer[] => {
@@ -49,8 +53,25 @@ export default function Exercise({ questions, onClickSubmit }: ExerciseProps) {
   };
 
   return (
-    <div className="flex flex-col p-12 text-left">
-      <div className="mb-6">[ Progress bar and timer ]</div>
+    <div className="flex flex-col text-left">
+      {/* progress bar and timer */}
+      <div className="flex flex-col">
+        <div className="flex justify-between mb-3">
+          <div className="font-bold text-base leading-8 h-8 text-[#2A59DA]">
+            Multiple Choice
+          </div>
+          <span className="px-6 py-1 bg-[#E9EEFB] rounded-2xl text-[#2A59DA] text-base font-bold">
+            <AlarmLogo className="inline-block" />
+            Time remaining 00:15
+          </span>
+        </div>
+        <div className="w-full bg-[#E9EEFB] rounded-full h-1.5 mb-4">
+          <div
+            className="bg-[#2A59DA] h-1.5 rounded-full"
+            style={{ width: `${currentProgressPercentage}%` }}
+          ></div>
+        </div>
+      </div>
       <div className="font-semibold text-xl mb-4">
         Question {currentQuestion + 1}/{totalQuestions}
       </div>
