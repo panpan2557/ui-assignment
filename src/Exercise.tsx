@@ -6,6 +6,14 @@ interface ExerciseProps {
   onClickSubmit: () => void;
 }
 
+// function Choice() => {
+// 	return (
+// 		<div className="border hover:border-[#A8BBF0] rounded-2xl py-4 px-6 text-left mb-3 last:mb-0 hover:bg-[#E9EEFB] hover:text-[#1F46B1]">
+//             {choice}
+//           </div>;
+// 	)
+// }
+
 export default function Exercise({ questions, onClickSubmit }: ExerciseProps) {
   const totalQuestions = questions.length;
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
@@ -16,13 +24,11 @@ export default function Exercise({ questions, onClickSubmit }: ExerciseProps) {
       <div className="font-semibold text-xl mb-4">
         Question {currentQuestion + 1}/{totalQuestions}
       </div>
-      <div className="font-normal mb-6">
-        {questions[currentQuestion].question}
-      </div>
+      <div className="font-normal mb-6">{questions[currentQuestion].text}</div>
       <div className="exercise-choices">
         {questions[currentQuestion].choices.map((choice) => (
           <div className="border hover:border-[#A8BBF0] rounded-2xl py-4 px-6 text-left mb-3 last:mb-0 hover:bg-[#E9EEFB] hover:text-[#1F46B1]">
-            {choice}
+            {choice.text}
           </div>
         ))}
       </div>

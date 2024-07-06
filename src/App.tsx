@@ -10,30 +10,44 @@ enum State {
 }
 
 export interface Question {
-  question: string;
-  choices: Array<string>;
+  id: number;
+  text: string;
+  choices: Array<{ id: number; text: string }>;
 }
 
 // Assumption: configuration JSON file or load from the server
 const questions: Question[] = [
   {
-    question: "what does your dad do?",
+    id: 0,
+    text: "What does your dad do?",
     choices: [
-      "He didn't do that.",
-      "He often exercises.",
-      "He is a teacher",
-      "He is going home.",
-      "Not sure.",
+      { id: 0, text: "He didn't do that." },
+      { id: 1, text: "He often exercises." },
+      { id: 2, text: "He is a teacher" },
+      { id: 3, text: "He is going home." },
+      { id: 4, text: "Not sure." },
     ],
   },
   {
-    question: "how did you find the meal?",
+    id: 1,
+    text: "How did you find the meal?",
     choices: [
-      "It was not far from here.",
-      "We asked for it",
-      "it was horrible",
-      "I made it myself.",
-      "Not sure.",
+      { id: 0, text: "It was not far from here." },
+      { id: 1, text: "We asked for it" },
+      { id: 2, text: "it was horrible" },
+      { id: 3, text: "I made it myself." },
+      { id: 4, text: "Not sure." },
+    ],
+  },
+  {
+    id: 2,
+    text: "I find living in the city very stressful.",
+    choices: [
+      { id: 0, text: "I can't find it." },
+      { id: 1, text: "Where do you find it?" },
+      { id: 2, text: "So do I." },
+      { id: 3, text: "I also live in the city." },
+      { id: 4, text: "Not sure." },
     ],
   },
 ];
