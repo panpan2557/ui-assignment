@@ -11,13 +11,15 @@ export default function Exercise({ questions, onClickSubmit }: ExerciseProps) {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
 
   return (
-    <div className="flex flex-col p-12">
-      <div>Progress bar and timer</div>
-      <div>
+    <div className="flex flex-col p-12 text-left">
+      <div className="mb-6">[ Progress bar and timer ]</div>
+      <div className="font-semibold text-xl mb-4">
         Question {currentQuestion + 1}/{totalQuestions}
       </div>
-      <div>{questions[currentQuestion].question}</div>
-      <div className="exercise-choices mt-6">
+      <div className="font-normal mb-6">
+        {questions[currentQuestion].question}
+      </div>
+      <div className="exercise-choices">
         {questions[currentQuestion].choices.map((choice) => (
           <div className="border hover:border-[#A8BBF0] rounded-2xl py-4 px-6 text-left mb-3 last:mb-0 hover:bg-[#E9EEFB] hover:text-[#1F46B1]">
             {choice}
@@ -25,19 +27,31 @@ export default function Exercise({ questions, onClickSubmit }: ExerciseProps) {
         ))}
       </div>
       <hr className="my-6" />
-      <div className="flex justify-between">
+      <div
+        className={
+          "flex " + (currentQuestion > 0 ? "justify-between" : "justify-end")
+        }
+      >
         {currentQuestion > 0 ? (
           <button
-            className=""
+            className="rounded-2xl px-8 py-2 border border-[#C7CBD1] text-[#5B6471] "
             onClick={() => setCurrentQuestion(currentQuestion - 1)}
           >
             Back
           </button>
         ) : null}
         {currentQuestion === totalQuestions - 1 ? (
-          <button onClick={onClickSubmit}>Submit</button>
+          <button
+            className="rounded-2xl px-8 py-2 bg-[#1F46B1] text-white"
+            onClick={onClickSubmit}
+          >
+            Submit
+          </button>
         ) : (
-          <button onClick={() => setCurrentQuestion(currentQuestion + 1)}>
+          <button
+            className="rounded-2xl px-8 py-2 bg-[#1F46B1] text-white"
+            onClick={() => setCurrentQuestion(currentQuestion + 1)}
+          >
             Next
           </button>
         )}
