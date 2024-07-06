@@ -1,5 +1,6 @@
 import { Question } from "./App";
-import { ReactComponent as Logo } from "./Multiple-choice.svg";
+import { ReactComponent as MultipleChoiceVector } from "./Multiple-choice.svg";
+import { formatSecondsToMinutes } from "./Utils";
 
 interface IntroductionProps {
   questions: Question[];
@@ -12,34 +13,28 @@ export default function Introduction({
   timeLimitSecond: timeLimit,
   onClickStart,
 }: IntroductionProps) {
-  const formatSecondsToMinutes = (second: number) => {
-    const m = Math.floor(second / 60)
-        .toString()
-        .padStart(2, "0"),
-      s = Math.floor(second % 60)
-        .toString()
-        .padStart(2, "0");
-    return m + ":" + s;
-  };
-
+  const cardContent: Array<{ title: string; value: string }> = [
+    { title: "Total questions", value: `${questions.length} questions` },
+    {
+      title: "Test duration",
+      value: `${formatSecondsToMinutes(timeLimit)} mins`,
+    },
+  ];
   return (
     <div className="flex flex-col items-center">
       <div className="text-3xl font-semibold mb-14">General English Test</div>
       <div className="general-info flex justify-center mb-14">
-        <div className="rounded-lg bg-[#E9EEFB] px-8 py-3 text-left mr-5">
-          <div className="text-xs font-normal">Total questions</div>
-          <div className="text-base font-bold">
-            {questions.length} questions
+        {cardContent.map((card, i) => (
+          <div
+            key={"info-card-" + i}
+            className="rounded-lg bg-[#E9EEFB] px-8 py-3 text-left mr-5"
+          >
+            <div className="text-xs font-normal">{card.title}</div>
+            <div className="text-base font-bold">{card.value}</div>
           </div>
-        </div>
-        <div className="rounded-lg bg-[#E9EEFB] px-8 py-3 text-left">
-          <div className="text-xs font-normal">Test duration</div>
-          <div className="text-base font-bold">
-            {formatSecondsToMinutes(timeLimit)} mins
-          </div>
-        </div>
+        ))}
       </div>
-      <Logo className="mb-14" />
+      <MultipleChoiceVector className="mb-14" />
       <div>
         <button
           className="bg-[#1F46B1] text-white rounded-2xl px-8 py-2"

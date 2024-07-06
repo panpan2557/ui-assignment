@@ -10,7 +10,7 @@ enum State {
   Summary = 2,
 }
 
-const timeLimitSecond = 20;
+const timeLimitSecond = 600;
 
 export interface Question {
   id: number;

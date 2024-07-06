@@ -1,4 +1,4 @@
-import { ReactComponent as Logo } from "./Speaking-test.svg";
+import { ReactComponent as SummaryVector } from "./Speaking-test.svg";
 
 export default function Summary() {
   return (
@@ -8,7 +8,7 @@ export default function Summary() {
         <div>You have completed the test.</div>
         <div>Your test result will be sent to your registered email.</div>
       </div>
-      <Logo />
+      <SummaryVector />
     </div>
   );
 }
