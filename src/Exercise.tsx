@@ -3,9 +3,10 @@ import { Question } from "./App";
 
 interface ExerciseProps {
   questions: Question[];
+  onClickSubmit: () => void;
 }
 
-export default function Exercise({ questions }: ExerciseProps) {
+export default function Exercise({ questions, onClickSubmit }: ExerciseProps) {
   const totalQuestions = questions.length;
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
 
@@ -34,7 +35,7 @@ export default function Exercise({ questions }: ExerciseProps) {
           </button>
         ) : null}
         {currentQuestion === totalQuestions - 1 ? (
-          <button>Submit</button>
+          <button onClick={onClickSubmit}>Submit</button>
         ) : (
           <button onClick={() => setCurrentQuestion(currentQuestion + 1)}>
             Next
