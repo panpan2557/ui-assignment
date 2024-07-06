@@ -1,5 +1,5 @@
 import Countdown from "react-countdown";
-import { ReactComponent as AlarmIcon } from "./alarm.svg";
+import { ReactComponent as AlarmIcon } from "../resources/svg/alarm.svg";
 
 interface CountdownTimer {
   targetDate: number;

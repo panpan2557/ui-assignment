@@ -1,4 +1,4 @@
-import { ReactComponent as SummaryVector } from "./Speaking-test.svg";
+import { ReactComponent as SummaryVector } from "../resources/svg/Speaking-test.svg";
 
 export default function Summary() {
   return (

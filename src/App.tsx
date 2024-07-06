@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
-import Exercise, { CommittedAnswer } from "./Exercise";
-import Introduction from "./Introduction";
-import Summary from "./Summary";
+import Exercise, { CommittedAnswer } from "./components/Exercise";
+import Introduction from "./components/Introduction";
+import Summary from "./components/Summary";
 
 enum State {
   Introduction = 0,

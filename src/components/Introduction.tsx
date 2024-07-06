@@ -1,6 +1,6 @@
-import { Question } from "./App";
-import { ReactComponent as MultipleChoiceVector } from "./Multiple-choice.svg";
-import { formatSecondsToMinutes } from "./Utils";
+import { Question } from "../App";
+import { ReactComponent as MultipleChoiceVector } from "../resources/svg/Multiple-choice.svg";
+import { formatSecondsToMinutes } from "../Utils";
 
 interface IntroductionProps {
   questions: Question[];

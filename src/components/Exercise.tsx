@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Question } from "./App";
-import { replaceAt } from "./Utils";
+import { Question } from "../App";
+import { replaceAt } from "../Utils";
 import CountdownTimer from "./CountdownTimer";
 
 export interface CommittedAnswer {
