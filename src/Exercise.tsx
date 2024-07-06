@@ -131,7 +131,8 @@ export default function Exercise({
         ) : null}
         {currentQuestion === totalQuestions - 1 ? (
           <button
-            className="rounded-2xl px-8 py-2 bg-[#1F46B1] text-white"
+            className="rounded-2xl px-8 py-2 bg-[#1F46B1] text-white disabled:bg-[#C7CBD1] disabled:cursor-not-allowed"
+            disabled={selectedChoiceId === undefined}
             onClick={() => {
               const nextCommittedAnswer = saveCommittedAnswer(selectedChoiceId);
               onClickSubmit(nextCommittedAnswer);
@@ -141,7 +142,8 @@ export default function Exercise({
           </button>
         ) : (
           <button
-            className="rounded-2xl px-8 py-2 bg-[#1F46B1] text-white"
+            className="rounded-2xl px-8 py-2 bg-[#1F46B1] text-white disabled:bg-[#C7CBD1] disabled:cursor-not-allowed"
+            disabled={selectedChoiceId === undefined}
             onClick={() => {
               const targetQuestion = currentQuestion + 1;
               setCurrentQuestion(targetQuestion);
