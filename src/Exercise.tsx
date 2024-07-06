@@ -3,10 +3,10 @@ import { Question } from "./App";
 
 interface ExerciseProps {
   questions: Question[];
-  onClickSubmit: () => void;
+  onClickSubmit: (committedAnswers: CommittedAnswer[]) => void;
 }
 
-interface CommittedAnswer {
+export interface CommittedAnswer {
   questionId: number;
   answerId?: number;
 }
@@ -32,13 +32,20 @@ export default function Exercise({ questions, onClickSubmit }: ExerciseProps) {
   const [committedAnswers, setCommittedAnswers] = useState<CommittedAnswer[]>(
     initCommittedAnswers(questions),
   );
-  const saveCommittedAnswer = (choiceId: number | undefined) => {
+  const saveCommittedAnswer = (
+    choiceId: number | undefined,
+  ): CommittedAnswer[] => {
+    const nextCommittedAnswer = replaceAt(committedAnswers, currentQuestion, {
+      ...committedAnswers[currentQuestion],
+      answerId: choiceId,
+    });
     setCommittedAnswers(
       replaceAt(committedAnswers, currentQuestion, {
         ...committedAnswers[currentQuestion],
         answerId: choiceId,
       }),
     );
+    return nextCommittedAnswer;
   };
 
   return (
@@ -87,7 +94,10 @@ export default function Exercise({ questions, onClickSubmit }: ExerciseProps) {
         {currentQuestion === totalQuestions - 1 ? (
           <button
             className="rounded-2xl px-8 py-2 bg-[#1F46B1] text-white"
-            onClick={onClickSubmit}
+            onClick={() => {
+              const nextCommittedAnswer = saveCommittedAnswer(selectedChoiceId);
+              onClickSubmit(nextCommittedAnswer);
+            }}
           >
             Submit
           </button>
