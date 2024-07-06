@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
-import Exercise from "./Exercise";
+import Exercise, { CommittedAnswer } from "./Exercise";
 import Introduction from "./Introduction";
+import Summary from "./Summary";
 
 enum State {
   Introduction = 0,
@@ -68,11 +69,14 @@ export default function App() {
         return (
           <Exercise
             questions={questions}
-            onClickSubmit={() => setCurrentState(State.Summary)}
+            onClickSubmit={(committedAnswers: CommittedAnswer[]) => {
+              console.log(committedAnswers);
+              setCurrentState(State.Summary);
+            }}
           />
         );
       case State.Summary:
-        return <>Summary</>;
+        return <Summary />;
       default:
         return null;
     }
