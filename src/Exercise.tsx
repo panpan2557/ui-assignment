@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Question } from "./App";
 import { ReactComponent as AlarmLogo } from "./alarm.svg";
+import Countdown from "react-countdown";
 
 interface ExerciseProps {
   questions: Question[];
+  timeLimitSecond: number;
   onClickSubmit: (committedAnswers: CommittedAnswer[]) => void;
 }
 
@@ -18,7 +20,11 @@ function replaceAt<T>(array: Array<T>, index: number, value: T) {
   return ret;
 }
 
-export default function Exercise({ questions, onClickSubmit }: ExerciseProps) {
+export default function Exercise({
+  questions,
+  timeLimitSecond,
+  onClickSubmit,
+}: ExerciseProps) {
   const initCommittedAnswers = (questions: Question[]): CommittedAnswer[] => {
     return questions.map((q) => {
       return { questionId: q.id, answerId: undefined };
@@ -33,6 +39,8 @@ export default function Exercise({ questions, onClickSubmit }: ExerciseProps) {
   const [committedAnswers, setCommittedAnswers] = useState<CommittedAnswer[]>(
     initCommittedAnswers(questions),
   );
+  const [targetTime] = useState<number>(Date.now() + timeLimitSecond * 1000);
+
   const currentProgressPercentage: number =
     (currentQuestion / totalQuestions) * 100;
 
@@ -61,8 +69,17 @@ export default function Exercise({ questions, onClickSubmit }: ExerciseProps) {
             Multiple Choice
           </div>
           <span className="px-6 py-1 bg-[#E9EEFB] rounded-2xl text-[#2A59DA] text-base font-bold">
-            <AlarmLogo className="inline-block" />
-            Time remaining 00:15
+            <AlarmLogo className="inline-block mr-1" />
+            Time remaining
+            <Countdown
+              date={targetTime}
+              onComplete={() => onClickSubmit(committedAnswers)}
+              renderer={({ formatted }) => (
+                <span className="ml-1">
+                  {formatted.minutes}:{formatted.seconds}
+                </span>
+              )}
+            />
           </span>
         </div>
         <div className="w-full bg-[#E9EEFB] rounded-full h-1.5 mb-4">

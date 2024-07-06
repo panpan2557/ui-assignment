@@ -10,6 +10,8 @@ enum State {
   Summary = 2,
 }
 
+const timeLimitSecond = 20;
+
 export interface Question {
   id: number;
   text: string;
@@ -62,6 +64,7 @@ export default function App() {
         return (
           <Introduction
             questions={questions}
+            timeLimitSecond={timeLimitSecond}
             onClickStart={() => setCurrentState(State.Exercise)}
           />
         );
@@ -69,6 +72,7 @@ export default function App() {
         return (
           <Exercise
             questions={questions}
+            timeLimitSecond={timeLimitSecond}
             onClickSubmit={(committedAnswers: CommittedAnswer[]) => {
               console.log(committedAnswers);
               setCurrentState(State.Summary);

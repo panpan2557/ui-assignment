@@ -3,13 +3,25 @@ import { ReactComponent as Logo } from "./Multiple-choice.svg";
 
 interface IntroductionProps {
   questions: Question[];
+  timeLimitSecond: number;
   onClickStart: () => void;
 }
 
 export default function Introduction({
   questions,
+  timeLimitSecond: timeLimit,
   onClickStart,
 }: IntroductionProps) {
+  const formatSecondsToMinutes = (second: number) => {
+    const m = Math.floor(second / 60)
+        .toString()
+        .padStart(2, "0"),
+      s = Math.floor(second % 60)
+        .toString()
+        .padStart(2, "0");
+    return m + ":" + s;
+  };
+
   return (
     <div className="flex flex-col items-center">
       <div className="text-3xl font-semibold mb-14">General English Test</div>
@@ -22,7 +34,9 @@ export default function Introduction({
         </div>
         <div className="rounded-lg bg-[#E9EEFB] px-8 py-3 text-left">
           <div className="text-xs font-normal">Test duration</div>
-          <div className="text-base font-bold">5:00 mins</div>
+          <div className="text-base font-bold">
+            {formatSecondsToMinutes(timeLimit)} mins
+          </div>
         </div>
       </div>
       <Logo className="mb-14" />
